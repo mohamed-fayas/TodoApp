@@ -1,0 +1,97 @@
+<div class="container-fluid">
+    <div class=" border border-2 border-dark rounded my-5 p-3">
+        <div class="row">
+            <div class="col-md-12 mt-5">
+                <div class="d-flex justify-content-center  align-items-baseline">
+                    <div class="me-2 h4 text-danger">
+                        <label for="priority ">
+                            Filter :
+                        </label>
+                    </div>
+                    <div>
+                        <select [(ngModel)]='taskPriority' (change)="filterTask()" name="priority" id="priority"
+                            class="form-control" style="width: 200px;">
+                            <option value="high">High</option>
+                            <option value="low">Low</option>
+                            <option value="all">All</option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Sl No</th>
+                            <th scope="col">Task</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Added Date</th>
+                            <th scope="col">Priority</th>
+                            <th scope="col">Action </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of filteredList; let i = index">
+
+                            <th scope="row">{{i+1}}</th>
+                            <td>{{ item.task }}</td>
+                            <td>{{ item.description }}</td>
+                            <td>{{ item.date }}</td>
+                            <td>{{ item.priority }}</td>
+                            <td>
+                                <i class="bi bi-pencil text-primary" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal" (click)="modalFunction(item,item.id,i)"></i>
+                                <i class="bi bi-trash3 text-danger" (click)="deleteTask(item.id,i)"></i>
+                                <i class="bi bi-check2 text-success" (click)="updateRow(item,i)"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- for adding modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form #form="ngForm" (ngSubmit)="modalChange(form.value)">
+                    <div class="form-now">
+                        <div class="form-group col-md-12">
+                            <label for="text" class="col-form-label">Task: </label>
+                            <input type="text" id="task" name="task" [(ngModel)]="task">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="text" class="col-form-label">Description: </label>
+                            <input type="text" id="description" name="description" [(ngModel)]="description">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="text" class="col-form-label">Priority: </label>
+                            <select [(ngModel)]='priority' name="priority" id="priority"
+                                class="form-control" style="width: 200px;">
+                                <option value="high">High</option>
+                                <option value="low">Low</option>
+                                <option value="all">All</option>
+
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <!-- <button type="button" class="btn btn-secondary">Close</button> -->
+                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

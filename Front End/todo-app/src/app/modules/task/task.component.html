@@ -1,0 +1,18 @@
+<div class="toolbar" role="banner">
+    <img src="/assets/images/banner.webp">
+
+    <ul>
+
+        <li><a routerLink="/task/dashboard/home"> HOME</a></li>
+        <li><a routerLink="/task/dashboard/addtask">ADD TASK</a></li>
+        <li><a routerLink="/task/dashboard/pending">PENDING TASK</a></li>
+        <li><a routerLink="/task/dashboard/complete">COMPLETE TASK </a></li>
+
+        <li> <a (click)="logout()">LOGOUT</a></li>
+
+    </ul>
+</div>
+
+<div class="rout">
+    <router-outlet></router-outlet>
+</div>

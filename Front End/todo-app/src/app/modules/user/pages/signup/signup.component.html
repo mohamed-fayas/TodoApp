@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center align-items-center">
+    <h4>Signup Now!</h4>
+</div>
+<div class="signup-form">
+    <div class=" border border-2 border-dark rounded my-5 p-3">
+        <form #form="ngForm" (submit)="signup(form.value)">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" name="name" id="name" #name="ngModel" required ngModel class="form-control">
+            </div>
+            <div *ngIf="name.touched">
+                <span *ngIf="name.errors?.['required']">Name is required</span>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" asyncEmailValidator name="email" id="email" #email="ngModel" required ngModel
+                    class="form-control">
+            </div>
+            <div *ngIf="email.errors?.['asyncError']">
+                Email Exist
+            </div>
+            <div *ngIf="email.touched">
+                <span *ngIf="email.errors?.['required']">Email is required</span>
+            </div>
+
+            <div class="mb-3">
+                <label for="mobile" class="form-label">Phone No</label>
+                <input type="text" name="mobile" id="mobile" #phone="ngModel" required ngModel class="form-control">
+            </div>
+            <div *ngIf="phone.touched">
+                <span *ngIf="phone.errors?.['required']">Phone number is required</span>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" #password="ngModel" required ngModel name="password" id="password"
+                    class="form-control">
+            </div>
+            <div *ngIf="password.touched">
+                <span *ngIf="password.errors?.['required']">Password is required</span>
+            </div>
+
+            <div class="mb-3">
+                <label for="confirm_password" class="form-label">Confirm Password</label>
+                <input type="password" #confirm="ngModel" required ngModel name="confirm_password" id="confirm_password"
+                    class="form-control">
+            </div>
+            <div *ngIf="confirm.touched">
+                <span *ngIf="confirm.errors?.['required']">Confirm password is required</span>
+            </div>
+
+            <div class="mb-3">
+                <label for="pic" class="form-label">Upload File (optional)</label>
+                <input type="file" (change)="onImageChanged($event)" ngModel name="pic" id="pic" class="form-control">
+
+            </div>
+
+            <button type="submit" class="btn btn-primary" routerLink="login">Sign Up</button>
+
+        </form>
+    </div>
+</div>

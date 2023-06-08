@@ -1,0 +1,45 @@
+<div class="main">
+  <div class="row">
+    <div class="col-md-12 mt-5">
+        <div class="d-flex justify-content-center  align-items-baseline">
+            <div class="me-2 h4 text-danger">
+                <label for="priority ">
+                    Filter : 
+                </label>
+            </div>
+            <div>
+               <input type="search" class="form-control" [(ngModel)] = "searchText" placeholder="search task" (keyup)="searchItems()" name="searchText" id="">
+            </div>
+        </div>
+    </div>
+</div>
+
+  <div class=" border border-2 border-dark rounded my-5 p-3"> 
+    <table class="table table-striped">
+      <thead>
+        <tr>
+            <th>SI NO</th>
+            <th>TASK</th>
+            <th>DESCRIPTION</th>
+            <th>COMPLETED DATE</th>
+            <th>PRIORITY LEVEL</th>
+            <th>ACTION</th>
+           
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of taskList; let i = index">
+          
+          <th scope="row">{{i+1}}</th>
+          <td>{{ item.task }}</td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.date }}</td>
+          <td>{{ item.priority }}</td>
+          <td>{{ item.completion_date }}</td>
+        </tr>
+        
+      </tbody>
+      </table>
+    </div>
+</div>
+
